@@ -1,0 +1,14 @@
+body {
+    background: linear-gradient(to bottom, rgb(26.8, 33.4, 40.6) 0%, rgb(37.37, 12.36, 43.62) 100%);
+  
+    /* Ensuring the gradient covers the entire viewport */
+    height: 100vh;
+    margin: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Set text color to be visible on the gradient background */
+    font-family: Arial, sans-serif;
+  }
+
+  
