@@ -1,2 +1,0 @@
-# Flixnet
-Movie database
