@@ -38,8 +38,7 @@ body {
   }
 
   .search #search {
-    top:10px;
-    left:10px;
+     /* figure out how to clean up ugly search */
   }
 
   /* all movie-card design */
