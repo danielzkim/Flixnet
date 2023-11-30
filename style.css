@@ -5,10 +5,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white; 
     /* font to use */
     font-family: "Jockey One-Regular", Helvetica;
     font-weight: 400;
+    color: white; 
   }
 
   #background-light {
@@ -26,19 +26,46 @@ body {
     left: 25px;
   }
 
+  /* all search design */
   .search {
     position: absolute;
-    width:550px;
-    height: 60px;
-    top: 25px;
-    right: 25px;
+    width:560px;
+    height: 45px;
+    top: 15px;
+    right: 15px;
     background-color: #ffffff26;
     border-radius: 16px;
     opacity: 0.9;
+    padding:10px;
+    display: flex;
+    align-items: center;
   }
 
-  .search #search {
-     /* figure out how to clean up ugly search */
+  .search #search-text {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: white;
+  }
+
+  ::placeholder {
+    color: white;
+  }
+
+  .search #search-icon {
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: none;
+    cursor: pointer;
+  }
+
+  .search #search-icon img {
+    width: 40px;
   }
 
   /* all movie-card design */
@@ -47,6 +74,12 @@ body {
     flex-direction:column;
     left: 0px;
     top: 0px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: "Jockey One-Regular", Helvetica;
+    font-weight: 400;
+    color: white;
   }
 
   .movie-card .movie-img {
@@ -64,6 +97,7 @@ body {
     font-size: 20px;
     letter-spacing: 0;
     line-height: normal;  
+    cursor: pointer;
   }
 
   .movie-card .director {
