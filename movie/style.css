@@ -70,7 +70,7 @@ body {
   }
 
   /* all movie-of-the-day design */
-  .movie-of-the-day {
+  .movie {
     display: flex;
     border: 0;
     background: none;
@@ -80,7 +80,7 @@ body {
     left: 15px;
   }
 
-  .movie-of-the-day .movie-img {
+  .movie .movie-img {
     width: 392px;
     height: 584px;
     object-fit: cover;
@@ -88,7 +88,7 @@ body {
     border-radius: 24px;
   }
 
-  .movie-of-the-day .movie-info {
+  .movie .movie-info {
     display: flex;
     flex-direction: column;
     font-family: "Jockey One-Regular", Helvetica;
@@ -96,20 +96,49 @@ body {
     color: white;
   }
 
-  .movie-of-the-day .movie-info #movie-of-the-day {
-    font-size: 30px;
-  }
-
-  .movie-of-the-day .movie-info #movie-title {
+  .movie .movie-info #movie-title {
     font-size: 32px;
   }
 
-  .movie-of-the-day .movie-info p .director {
+  .movie .movie-info p .director {
     font-size: 26px;
   }
 
-  .movie-of-the-day .movie-info p .release-date {
+  .movie .movie-info p .release-date {
     font-size: 24px;
+  }
+
+  .movie .movie-info .description {
+    font-size: 20px;
+  }
+
+  .movie .movie-info .cast {
+    font-size: 24px;
+  }
+  
+  .movie .movie-info #cast {
+    font-size: 20px;
+  }
+
+
+  /* related secion design */
+  .related-movies {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 735px;
+    left: 30px;
+  }
+
+  .related-movies .related {
+    font-size: 28px;
+  }
+
+  .related-movies .related-movie-cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   /* all movie-card design */
@@ -136,12 +165,7 @@ body {
   }
 
   .movie-card .movie-title {
-    width: 142px;
-    height: 53px;
-    font-size: 20px;
-    letter-spacing: 0;
-    line-height: normal;  
-    cursor: pointer;
+    font-size: 20px;  
   }
 
   .movie-card .director {
