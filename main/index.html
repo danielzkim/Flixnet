@@ -14,28 +14,32 @@
       <input id="search-text" type="text" placeholder="Search movies..."/>
     </div>
 
-    <a href="/movie/index.html">
-      <button class="movie-of-the-day">
-        <!-- Movie of the day img, title, and info goes in here -->
-        <img class="movie-img" src="/images/movie-of-the-day.png">
-        <div class="movie-info">
-          <div id="movie-of-the-day">Movie of the Day:</div>
-          <div id="movie-title">Movie Title</div>
-          <p>
-            <span class="director">Director Name<br /></span> 
-            <span class="release-date">Release Date</span>
-          </p>
-        </div>
-      </button>
+    <a id="movie-of-the-day-container" href="/movie/index.html">
+      <!-- movie of the day gotten from javascript -->
+
+      <!-- example
+        <button class="movie-of-the-day">
+          <img class="movie-img" src={"/images/movie-of-the-day.png"}>
+          <div class="movie-info">
+            <div id="movie-of-the-day">{Movie of the Day:}</div>
+            <div id="movie-title">{Movie Title}</div>
+            <p>
+              <span class="director">Director Name<br /></span> 
+              <span class="release-date">{Release Date}</span>
+            </p>
+          </div>
+        </button>
+      -->
     </a>
     
    
     <div class="popular-movies">
       <div class="popular">Popular</div>
-      <div class="popular-movie-cards">
+      <div class="popular-movies-container">
           <!-- Where all the popular movie cards go into, can fit 6 movies -->
+          
+          <!-- example
           <a href="/movie/index.html"  style="text-decoration:none">
-            <!-- this is where the actual movie card img, title, and info goes -->
             <button class="movie-card">
               <img class="movie-img"  src="/images/example-poster.png">
               <div class="movie-title">Movie Title</div>
@@ -95,6 +99,8 @@
               </p>
             </button>
           </a>
+        -->
+
       </div>
     </div>
 
