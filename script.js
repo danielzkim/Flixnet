@@ -27,6 +27,7 @@
 const apiKey = '322ac30eac281d894f170e64aabc7faf';
 const baseUrl = 'https://api.themoviedb.org/3';
 
+https://api.themoviedb.org/3/movie/414906?api_key=322ac30eac281d894f170e64aabc7faf
 
 // Might need to add /search/ to all these fetchs
 // Function to get poster for a given movie ID
@@ -91,6 +92,10 @@ async function getMovieCast(movieId) {
     }
 }
 
+function convertActorsToString(actorsArray) {
+    return actorsArray.join(', ');
+}
+
 // get release date from given id
 async function getMovieReleaseDate(movieId) {
     try {
@@ -129,9 +134,109 @@ async function searchMoviesByKeywords(keywords) {
     }
 }
 
+// returns the top 7 most trending movies as a list
+async function getTopTrendingMovies() {
+    try {
+        const response = await fetch(`${baseUrl}/trending/movie/day?api_key=${apiKey}`);
+        const data = await response.json();
 
+        if (data.results && data.results.length > 0) {
+            const topMovies = data.results.slice(0, 7); // Get the top 6 trending movies
+            return topMovies;
+        } else {
+            console.log('No trending movies found for today.');
+            return [];
+        }
+    } catch (error) {
+        console.error('Error fetching trending movies:', error);
+        return [];
+    }
+}
+
+// returns an array of similar movies to given id
+async function getSimilarMovies(movieId) {
+    try {
+        const response = await fetch(`${baseUrl}/movie/${movieId}/similar?api_key=${apiKey}`);
+        const data = await response.json();
+
+        if (data.results && data.results.length > 0) {
+            const similarMovies = data.results;
+            return similarMovies;
+        } else {
+            console.log('No similar movies found for the given movie ID.');
+            return [];
+        }
+    } catch (error) {
+        console.error('Error fetching similar movies:', error);
+        return [];
+    }
+}
+
+search = document.getElementById("search-icon");
+query = document.getElementById("search-text");
+// popularMovieCards = document.querySelectorAll('.movie-card')
+movieOfTheDay = document.getElementById("movie-of-the-day")
+
+// const popularMovies = getTopTrendingMovies()
+
+
+
+// Update Popular Movies section with top 6 trending movies
+async function updatePopularMovies() {
+    const popularMovies = await getTopTrendingMovies();
+    if (popularMovies.length > 0) {
+        const popularMovieCards = document.querySelectorAll('.movie-card');
+        
+        for (let i = 0; i < popularMovieCards.length && i < popularMovies.length; i++) {
+            const currentMovie = popularMovies[i + 1];
+
+            const movieTitleElement = popularMovieCards[i].querySelector('.movie-title');
+            movieTitleElement.textContent = currentMovie.title;
+
+            const releaseDateElement = popularMovieCards[i].querySelector('.release-date');
+            const releaseDate = await getMovieReleaseDate(currentMovie.id);
+            releaseDateElement.textContent = releaseDate;
+
+            const moviePosterUrl = await getMoviePoster(currentMovie.id);
+            const moviePosterElement = popularMovieCards[i].querySelector('.movie-img');
+            moviePosterElement.src = moviePosterUrl;
+        }
+    }
+}
+
+updatePopularMovies();
+
+
+// Function to update Movie of the Day section with the most popular movie
+async function updateMovieOfTheDay() {
+    const popularMovies = await getTopTrendingMovies();
+    if (popularMovies.length > 0) {
+        const mostPopularMovie = popularMovies[0]; // Assuming the first movie in the list is the most popular
+        
+        const movieTitleElement = document.getElementById('movie-title');
+        movieTitleElement.innerHTML = mostPopularMovie.title;
+
+        const releaseDateElement = document.querySelector('.release-date');
+        const releaseDate = await getMovieReleaseDate(mostPopularMovie.id);
+        releaseDateElement.innerHTML = releaseDate;
+
+        const moviePosterUrl = await getMoviePoster(mostPopularMovie.id);
+        const moviePosterElement = document.querySelector('.movie-img');
+        moviePosterElement.src = moviePosterUrl;
+
+        const movieRatingElement = document.querySelector('.director'); // Using director field to display rating
+        const movieRating = await getMovieRating(mostPopularMovie.id);
+        movieRatingElement.innerHTML = `Rating: ${movieRating}`;
+    }
+}
+
+updateMovieOfTheDay();
 /* 
             Movie card:
+
+            ? = getTopTrendingMovies()[1-6] (for popular movies)
+            ? = getSimilarMovies(id)[0-12] (for related movies)
+            ? = searchMoviesByKeywords(searchedWords)[0-18]
 
             <button class="movie-card">
               <img class="movie-img" src=getMoviePoster(?)>
@@ -143,14 +248,38 @@ async function searchMoviesByKeywords(keywords) {
 
             Movie of the day:
 
+            ? = getTopTrendingMovies()[0]
+
             <button class="movie-of-the-day">
-                <img class="movie-img" src="getMoviePoster(?)">
+                <img class="movie-img" src=getMoviePoster(?)>
                 <div class="movie-info">
                     <div id="movie-of-the-day">Movie of the Day:</div>
                     <div id="movie-title">getMovieTitle(?)</div>
                     <p>
-                        <span class="director">Director Name<br /></span> 
-                        <span class="release-date">Release Date</span>
+                        <span class="release-date">getMovieReleaseDate(?)</span>
                     </p>
                 </div>
             </button>
+
+            Selected movie:
+
+            ? = id of selected movie
+
+            <button class="movie">
+                <img class="movie-img" src=getMoviePoster(?)>
+                <div class="movie-info">
+                    <div id="movie-title">getMovieTitle(?)</div>
+                    <p>
+                        <span class="release-date">getMovieReleaseDate(?)</span>
+                    </p>
+                    <p class="description">
+                        getMovieDescription(?)
+                    </p>
+                    <div class="cast">Cast:</div>
+                    <p id="cast">
+                        convertActorsToString(getMovieCast(?))
+                    </p>
+                </div>
+            </button>
+
+*/
