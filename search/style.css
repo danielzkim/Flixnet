@@ -82,6 +82,7 @@ body {
     font-family: "Jockey One-Regular", Helvetica;
     font-weight: 400;
     color: white;
+    text-align: left;
   }
 
   .movie-card .movie-img {

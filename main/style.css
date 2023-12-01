@@ -94,6 +94,7 @@ body {
     font-family: "Jockey One-Regular", Helvetica;
     font-weight: 400;
     color: white;
+    text-align: left;
   }
 
   .movie-of-the-day .movie-info #movie-of-the-day {
@@ -101,7 +102,11 @@ body {
   }
 
   .movie-of-the-day .movie-info #movie-title {
-    font-size: 32px;
+    font-size: 40px;
+    background: linear-gradient(90deg, rgb(221.5, 36.49, 17.39) 0%, rgb(117.83, 19.84, 142.33) 100%);
+    -webkit-background-clip: text !important;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .movie-of-the-day .movie-info p .director {
@@ -144,6 +149,7 @@ body {
     font-family: "Jockey One-Regular", Helvetica;
     font-weight: 400;
     color: white;
+    text-align: left;
   }
 
   .movie-card .movie-img {
