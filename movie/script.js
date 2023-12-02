@@ -70,7 +70,7 @@ async function generateSimilarMovieCardHTML(movie) {
     // Generate HTML for a single movie card
     const movieCardHTML = `
         <a href="/movie/index.html" style="text-decoration:none">
-            <button class="movie-card">
+            <button class="movie-card" id="select-movie">
                 <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
                 <div class="movie-title">${movieTitle}</div>
                 <p class="movie-info">
@@ -113,7 +113,7 @@ async function generateSelectedMovie() {
 
         // Generate HTML
         const movieOfTheDayHTML = `
-        <button class="movie">
+        <button class="movie" id="select-movie">
             <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
             <div class="movie-info">
                 <div id="movie-title">${movieTitle}</div>
@@ -148,37 +148,3 @@ async function movieInit() {
 }
 
 movieInit();
-
-// everything for search
-
-async function search() {
-    const searchText = document.getElementById('search-text').value.trim();
-
-    if (searchText !== '') {
-        // Constructing the URL with search query parameters
-        const paramsString = `?query=${encodeURIComponent(searchText)}`;
-        const newUrl = `http://127.0.0.1:5500/search/index.html${paramsString}`;
-
-        // Redirect to the new URL
-        window.location.href = newUrl;
-    } else {
-        // Handle empty search text or provide a default behavior
-    }
-}
-
-// Event listener for search button click
-document.getElementById('search-icon').addEventListener('click', search())
-
-// works for the keypress enter
-document.getElementById('search-text').addEventListener('keypress', async (e) => {
-    if (e.key === 'Enter') {
-        const searchText = document.getElementById('search-text').value.trim();
-        
-        if (searchText !== '') {
-            const movieIds = await searchMoviesByKeywords(searchText);
-            await generateMovieCardsFromIDs(movieIds);
-        } else {
-            // Handle empty search text or provide a default behavior
-        }
-    }
-});
