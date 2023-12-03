@@ -21,14 +21,7 @@ document.getElementById('search-icon').addEventListener('click', search)
 // works for the keypress enter
 document.getElementById('search-text').addEventListener('keypress', async (e) => {
     if (e.key === 'Enter') {
-        const searchText = document.getElementById('search-text').value.trim();
-        
-        if (searchText !== '') {
-            const movieIds = await searchMoviesByKeywords(searchText);
-            await generateMovieCardsFromIDs(movieIds);
-        } else {
-            // Handle empty search text or provide a default behavior
-        }
+        search();        
     }
 });
 
