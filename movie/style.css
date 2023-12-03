@@ -137,13 +137,15 @@ body {
 
   .related-movies .related {
     font-size: 28px;
+    margin-bottom: 20px;
   }
 
   .related-movies .related-movie-cards {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 24px;
   }
 
   /* all movie-card design */
@@ -159,6 +161,7 @@ body {
     font-weight: 400;
     color: white;
     text-align: left;
+    width: 196px;
   }
 
   .movie-card .movie-img {
@@ -166,7 +169,7 @@ body {
     height: 292px;
     object-fit: cover;
     position: relative;
-    margin: 10px;
+    margin-bottom: 10px;
     border-radius: 24px;
   }
 

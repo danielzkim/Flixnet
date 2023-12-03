@@ -42,9 +42,3 @@ async function handleMovieSelection(movieId) {
         window.location.href = newUrl;
     }
 }
-
-const movieCards = document.querySelectorAll('.select-movie');
-
-movieCards.forEach(card => {
-    card.addEventListener('click', handleMovieSelection(card.getAttribute('data-movie-id')));
-});

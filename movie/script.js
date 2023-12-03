@@ -29,7 +29,7 @@ async function getMovieCast(movieId) {
         let response = await fetch(`${baseUrl}/movie/${movieId}/credits?api_key=${apiKey}`);
         let data = await response.json();
         const cast = data.cast.map(actor => actor.name);
-        return cast;
+        return cast.slice(0, 10);
     } catch (error) {
         console.error('Error fetching cast:', error);
         return [];
@@ -70,7 +70,7 @@ async function generateSimilarMovieCardHTML(movie) {
 
     // Generate HTML for a single movie card
     const movieCardHTML = `
-            <button class="movie-card select-movie" data-movie-id="${movieId}>
+            <button class="movie-card select-movie" data-movie-id="${movieId}">
                 <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
                 <div class="movie-title">${movieTitle}</div>
                 <p class="movie-info">
@@ -109,11 +109,10 @@ async function generateSelectedMovie(movieId) {
         const movieRating = movie.rating;
         const movieDescription = movie.description;
         const movieCast = movie.cast;
-        const movieId = movie.id;
 
         // Generate HTML
         const selectedMovieHTML = `
-        <button class="movie" data-movie-id="${movieId}">
+        <button class="movie" data-movie-id="${movie.id}">
             <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
             <div class="movie-info">
                 <div id="movie-title">${movieTitle}</div>
@@ -143,8 +142,19 @@ async function displaySelectedMovie(movieId) {
 async function movieInit() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('query'); // get id from url
-    displaySelectedMovie(movieId);
-    displaySimilarMovies(movieId);
+    await displaySelectedMovie(movieId);
+    await displaySimilarMovies(movieId);
+    attachEventListeners();
+}
+
+function attachEventListeners() {
+    const movieCards = document.querySelectorAll('.select-movie');
+    movieCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const movieId = card.getAttribute('data-movie-id');
+            handleMovieSelection(movieId);
+        });
+    });
 }
 
 movieInit();

@@ -105,14 +105,19 @@ async function displayMovieOfTheDay() {
 
 async function init_homePage() {
     popularMovies = await getTopTrendingMovies();
-    displayPopularMovies();
-    displayMovieOfTheDay();
+    await displayPopularMovies();
+    await displayMovieOfTheDay();
+    attachEventListeners();
+}
+
+function attachEventListeners() {
+    const movieCards = document.querySelectorAll('.select-movie');
+    movieCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const movieId = card.getAttribute('data-movie-id');
+            handleMovieSelection(movieId);
+        });
+    });
 }
 
 init_homePage();
-
-// clicking movie
-
-
-
-

@@ -7,7 +7,6 @@ let searchResults = null;
 async function searchMoviesByKeywords(keywords) {
     try {
         const encodedKeywords = encodeURIComponent(keywords);
-        console.log(encodedKeywords);
         const response = await fetch(`${baseUrl}/search/movie?api_key=${apiKey}&query=${encodedKeywords}&include_adult=false&language=en-US&page=1`);
         const data = await response.json();
         
@@ -51,13 +50,18 @@ async function generateMovieCardHTML(movie) {
 async function displaySearchResults() {
     const searchResultsContainer = document.getElementById('search-results');
 
+    // Clear previous search results
+    searchResultsContainer.innerHTML = '';
+
     // Loop to generate and append HTML for each movie card
-    for (let i = 0; i <= searchResults.length; i++) {
+    for (let i = 0; i < searchResults.length; i++) {
         const movieCardHTML = await generateMovieCardHTML(searchResults[i]);
         if (movieCardHTML !== '') {
             searchResultsContainer.innerHTML += movieCardHTML;
         }
     }
+
+    attachEventListeners();
 }
 
 async function searchPageInit() {
@@ -68,11 +72,20 @@ async function searchPageInit() {
 
     if (query) {
         searchResults = await searchMoviesByKeywords(query);
-        displaySearchResults();
+        await displaySearchResults();
     } else {
         console.error('No query found in URL');
     }
-    //displaySearchResults();
+}
+
+function attachEventListeners() {
+    const movieCards = document.querySelectorAll('.select-movie');
+    movieCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const movieId = card.getAttribute('data-movie-id');
+            handleMovieSelection(movieId);
+        });
+    });
 }
 
 searchPageInit();
