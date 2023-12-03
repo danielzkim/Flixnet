@@ -34,3 +34,17 @@ document.getElementById('search-text').addEventListener('keypress', async (e) =>
 
 
 // everything for clicking the movie
+
+async function handleMovieSelection(movieId) {
+    if (movieId) {
+        const paramsString = `?query=${movieId}`;
+        const newUrl = `http://127.0.0.1:5500/movie/index.html${paramsString}`;
+        window.location.href = newUrl;
+    }
+}
+
+const movieCards = document.querySelectorAll('.select-movie');
+
+movieCards.forEach(card => {
+    card.addEventListener('click', handleMovieSelection(card.getAttribute('data-movie-id')));
+});

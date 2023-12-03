@@ -66,11 +66,11 @@ async function generateSimilarMovieCardHTML(movie) {
     const movieTitle = movie.title;
     const releaseDate = movie.release_date;
     const movieRating = movie.vote_average;
+    const movieId = movie.id;
 
     // Generate HTML for a single movie card
     const movieCardHTML = `
-        <a href="/movie/index.html" style="text-decoration:none">
-            <button class="movie-card" id="select-movie">
+            <button class="movie-card select-movie" data-movie-id="${movieId}>
                 <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
                 <div class="movie-title">${movieTitle}</div>
                 <p class="movie-info">
@@ -78,7 +78,6 @@ async function generateSimilarMovieCardHTML(movie) {
                     <span class="release-date">${releaseDate}</span>
                 </p>
             </button>
-        </a>
     `;
     return movieCardHTML;
 }
@@ -101,7 +100,7 @@ async function displaySimilarMovies(movieId) {
 }
 
 
-async function generateSelectedMovie() {
+async function generateSelectedMovie(movieId) {
         const movie = await getMovieDetails(movieId);
 
         const moviePosterUrl = movie.posterPath;
@@ -110,10 +109,11 @@ async function generateSelectedMovie() {
         const movieRating = movie.rating;
         const movieDescription = movie.description;
         const movieCast = movie.cast;
+        const movieId = movie.id;
 
         // Generate HTML
-        const movieOfTheDayHTML = `
-        <button class="movie" id="select-movie">
+        const selectedMovieHTML = `
+        <button class="movie" data-movie-id="${movieId}">
             <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
             <div class="movie-info">
                 <div id="movie-title">${movieTitle}</div>
@@ -131,20 +131,20 @@ async function generateSelectedMovie() {
             </div>
         </button>
         `;
-        return movieOfTheDayHTML;
+        return selectedMovieHTML;
 }
           
-async function displaySelectedMovie() {
+async function displaySelectedMovie(movieId) {
     const selectedMovie = document.getElementById('selected-movie-container');
-    const selectedMovieHTML = await generateSelectedMovie();
+    const selectedMovieHTML = await generateSelectedMovie(movieId);
     selectedMovie.innerHTML = selectedMovieHTML;
 }
 
 async function movieInit() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('query'); // get id from url
-    displaySelectedMovie();
-    displaySimilarMovies();
+    displaySelectedMovie(movieId);
+    displaySimilarMovies(movieId);
 }
 
 movieInit();

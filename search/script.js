@@ -32,10 +32,10 @@ async function generateMovieCardHTML(movie) {
     const movieTitle = movie.title;
     const releaseDate = movie.release_date;
     const rating = movie.vote_average;
+    const movieId = movie.id;
 
     const movieCardHTML = `
-        <a href="/movie/index.html" style="text-decoration:none">
-        <button class="movie-card" id="select-movie">
+        <button class="movie-card select-movie" data-movie-id="${movieId}">
             <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
             <div class="movie-title">${movieTitle}</div>
             <p class="movie-info">
@@ -43,7 +43,6 @@ async function generateMovieCardHTML(movie) {
                 <span class="release-date">${releaseDate}</span>
             </p>
         </button>
-        </a>
     `;
 
     return movieCardHTML;    

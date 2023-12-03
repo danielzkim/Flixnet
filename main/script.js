@@ -28,6 +28,7 @@ async function getTopTrendingMovies() {
 // Function to generate HTML for the movie card with fetched data for the 2nd to 7th most popular movies
 async function generateMovieCardHTML(movie) {
 
+    const movieId = movie.id;
     const moviePosterUrl = movie.poster_path;
     const movieTitle = movie.title;
     const releaseDate = movie.release_date;
@@ -35,8 +36,7 @@ async function generateMovieCardHTML(movie) {
 
     // Generate HTML for a single movie card
     const movieCardHTML = `
-        <a href="/movie/index.html" style="text-decoration:none">
-            <button class="movie-card" id="select-movie">
+            <button class="movie-card  select-movie" data-movie-id="${movieId}">
                 <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
                 <div class="movie-title">${movieTitle}</div>
                 <p class="movie-info">
@@ -44,7 +44,6 @@ async function generateMovieCardHTML(movie) {
                     <span class="release-date">${releaseDate}</span>
                 </p>
             </button>
-        </a>
     `;
     return movieCardHTML;
 }
@@ -54,7 +53,7 @@ async function displayPopularMovies() {
     const popularMoviesContainer = document.getElementById('popular-movies-container');
 
     // Loop to generate and append HTML for each movie card
-    for (let i = 1; i <= popularMovies.length; i++) {
+    for (let i = 1; i <= popularMovies.length - 1; i++) {
         const movieCardHTML = await generateMovieCardHTML(popularMovies[i]);
         if (movieCardHTML !== '') {
             popularMoviesContainer.innerHTML += movieCardHTML;
@@ -65,7 +64,6 @@ async function displayPopularMovies() {
 // Call the function to display the 2nd to 7th most popular movies with individual links
 
 
-// Function to update Movie of the Day section with the most popular movie
 // Function to generate HTML for the Movie of the Day section with fetched data
 async function generateMovieOfTheDayHTML() {
     if (popularMovies.length > 0) {
@@ -75,10 +73,11 @@ async function generateMovieOfTheDayHTML() {
         const movieTitle = mostPopularMovie.title;
         const releaseDate = mostPopularMovie.release_date;
         const movieRating = mostPopularMovie.vote_average;
+        const movieId = mostPopularMovie.id;
 
         // Generate HTML
         const movieOfTheDayHTML = `
-                <button class="movie-of-the-day" id="select-movie">
+                <button class="movie-of-the-day select-movie" data-movie-id="${movieId}">
                     <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
                     <div class="movie-info">
                         <div id="movie-of-the-day">Movie of the Day:</div>
