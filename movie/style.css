@@ -78,6 +78,8 @@ body {
     position: absolute;
     top: 120px;
     left: 15px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
   }
 
   .movie .movie-img {
@@ -95,6 +97,8 @@ body {
     font-weight: 400;
     color: white;
     text-align: left;
+    margin-top: 3vh;
+    margin-left: 2vh;
   }
 
   .movie .movie-info #movie-title {
@@ -110,6 +114,10 @@ body {
   }
 
   .movie .movie-info p .release-date {
+    font-size: 24px;
+  }
+
+  .movie .movie-info #description {
     font-size: 24px;
   }
 

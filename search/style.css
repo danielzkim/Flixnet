@@ -80,6 +80,7 @@ body {
     gap: 24px;
     top: 120px;
     left: 15px;
+    margin-top: 5vh;
   }
 
   .movie-card {

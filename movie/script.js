@@ -74,8 +74,8 @@ async function generateSimilarMovieCardHTML(movie) {
                 <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
                 <div class="movie-title">${movieTitle}</div>
                 <p class="movie-info">
-                    <span class="director">${movieRating}</span><br />
-                    <span class="release-date">${releaseDate}</span>
+                    <span class="director">Rating: ${movieRating} / 10</span><br />
+                    <span class="release-date">Release Date: ${formatDateToEnglish(releaseDate)}</span>
                 </p>
             </button>
     `;
@@ -117,9 +117,10 @@ async function generateSelectedMovie(movieId) {
             <div class="movie-info">
                 <div id="movie-title">${movieTitle}</div>
                 <p>
-                    <span class="director">${movieRating}<br /></span>
-                   <span class="release-date">${releaseDate}</span>
+                    <span class="director">Rating: ${movieRating} / 10<br /></span>
+                   <span class="release-date">Release Date: ${formatDateToEnglish(releaseDate)}</span>
                 </p>
+                <div id="description">Description:</div>
                 <p class="description">
                    ${movieDescription}
                 </p>
@@ -131,6 +132,30 @@ async function generateSelectedMovie(movieId) {
         </button>
         `;
         return selectedMovieHTML;
+}
+
+function formatDateToEnglish(inputDate) {
+    const months = [
+      'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ];
+  
+    const dateParts = inputDate.split('-');
+    const year = dateParts[0];
+    const month = months[parseInt(dateParts[1], 10) - 1];
+    const day = parseInt(dateParts[2], 10);
+  
+    let daySuffix = 'th';
+    if (day === 1 || day === 21 || day === 31) {
+      daySuffix = 'st';
+    } else if (day === 2 || day === 22) {
+      daySuffix = 'nd';
+    } else if (day === 3 || day === 23) {
+      daySuffix = 'rd';
+    }
+    const formattedDate = `${month} ${day}${daySuffix}, ${year}`;
+    return formattedDate;
 }
           
 async function displaySelectedMovie(movieId) {

@@ -1,7 +1,8 @@
 body {
     background: linear-gradient(to bottom, rgb(26.8, 33.4, 40.6) 0%, rgb(37.37, 12.36, 43.62) 100%);
-    height: 120vh;
-    margin: 440px;
+    height: 100vh;
+    /*margin: 440px;*/
+    margin: 0;
     border: 20px;
     display: flex;
     align-items: center;
@@ -10,6 +11,7 @@ body {
     font-family: "Jockey One-Regular", Helvetica;
     font-weight: 400;
     color: white; 
+    background-attachment: fixed; 
   }
 
   #background-light {
@@ -76,6 +78,8 @@ body {
     background: none;
     cursor: pointer;
     position: absolute;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
     top: 120px;
     left: 15px;
   }
@@ -95,6 +99,8 @@ body {
     font-weight: 400;
     color: white;
     text-align: left;
+    margin-top: 3vh;
+    margin-left: 2vh;
   }
 
   .movie-of-the-day .movie-info #movie-of-the-day {
@@ -118,17 +124,31 @@ body {
   }
 
   /* popular secion design */
+
+  .parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .popular-movies {
     position: absolute;
     display: flex;
     flex-direction: column;
     top: 735px;
     left: 30px;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
   }
 
   .popular-movies .popular {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 4vh;
+  }
+
+  .movies-container-wrapper {
+    overflow-x: auto; /* Enable horizontal scrolling for the wrapper */
+    width: 100%;
   }
 
   .popular-movies #popular-movies-container {
@@ -138,6 +158,129 @@ body {
     width: 100%;
     gap: 24px;
   }
+
+  /* genre section design */
+  .genre-movies {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 1700px;
+    left: 30px;
+    margin-top: 5vh;
+  }
+
+  .genre-bar {
+    position: relative;
+    width: 97.5%;
+    height: 96px;
+    margin-bottom: 3vh;
+    background: #1e1e1e;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .3);
+    border-radius: 24px;
+    font-size: 0;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .genre-bar .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, rgba(117.83, 19.84, 142.33, 0) 0%, rgb(117.83, 19.84, 142.33) 100%);
+    width: 16.66%;
+    border-radius: 24px;
+    transition: all .5s ease 0s;
+  }
+
+  .genre-bar button {
+    border: none;
+    color: white;
+    background: none;
+    cursor: pointer;
+    font-size: 27px;
+    line-height: 90px;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .genre-bar button:nth-child(1) {
+    width: 16.66%;
+  }
+  .genre-bar .start-action,button:nth-child(1):hover~.animation {
+    width: 16.66%;
+    left: 0;
+  }
+
+  .genre-bar button:nth-child(2) {
+    width: 16.66%;
+  }
+  .genre-bar .start-comedy,button:nth-child(2):hover~.animation {
+    width: 16.66%;
+    left: 16.66%;
+  }
+
+  .genre-bar button:nth-child(3) {
+    width: 16.66%;
+  }
+  .genre-bar .start-drama,button:nth-child(3):hover~.animation {
+    width: 16.66%;
+    left: 33.32%;
+  }
+
+  .genre-bar button:nth-child(4) {
+    width: 16.66%;
+  }
+  .genre-bar .start-romance,button:nth-child(4):hover~.animation {
+    width: 16.66%;
+    left: 49.98%;
+  }
+
+  .genre-bar button:nth-child(5) {
+    width: 16.66%;
+  }
+  .genre-bar .start-adventure,button:nth-child(5):hover~.animation {
+    width: 16.66%;
+    left: 66.64%;
+  }
+
+  .genre-bar button:nth-child(6) {
+    width: 16.66%;
+  }
+  .genre-bar .start-mystery,button:nth-child(6):hover~.animation {
+    width: 16.66%;
+    left: 83.30%;
+  }
+
+  #action #comedy #drama #romance #adventure #mystery {
+    width: 16.66%;
+  }
+
+
+
+  /* linear-gradient(180deg, rgba(117.83, 19.84, 142.33, 0) 0%, rgb(117.83, 19.84, 142.33) 100%) */
+
+  .genre-movies .genre {
+    font-size: 28px;
+    margin-bottom: 4vh;
+  }
+
+
+
+  .genre-movies #genre-movies-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 24px;
+  }
+
+  .popular-movies #popular-movies-container .movie-card,
+.genre-movies #genre-movies-container .movie-card {
+  flex: 0 0 calc(16.666% - 24px);
+}
 
   /* all movie-card design */
   .movie-card {

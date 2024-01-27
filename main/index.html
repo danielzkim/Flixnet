@@ -18,11 +18,33 @@
       <!-- movie of the day gotten from javascript -->
     </div>
     
-    <div class="popular-movies">
-      <div class="popular">Popular</div>
-      <div id="popular-movies-container">
-          <!-- Where all the popular movie cards go into, can fit 6 movies --> 
+    <div class="parent">
+
+      <div class="popular-movies">
+        <div class="popular">Popular</div>
+        <div class="movies-container-wrapper">
+          <div id="popular-movies-container">
+            <!-- Where all the popular movie cards go into, can fit 6 movies -->
+          </div>
+        </div>
       </div>
+    
+      <div class="genre-movies">
+        <div class="genre">By Genre</div>
+        <nav class="genre-bar">
+          <button id="action">Action</button>
+          <button id="comedy">Comedy</button>
+          <button id="drama">Drama</button>
+          <button id="romance">Romance</button>
+          <button id="adventure">Adventure</button>
+          <button id="mystery">Mystery</button>
+          <div class="animation start-action"></div>
+        </nav>
+        <div id="genre-movies-container">
+          <!-- Where all the genre movie cards go into, can fit 6 movies -->
+        </div> 
+      </div>
+    
     </div>
 
   <script src="/main/script.js"></script>

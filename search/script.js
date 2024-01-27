@@ -30,7 +30,7 @@ async function generateMovieCardHTML(movie) {
     const moviePosterUrl = movie.poster_path;
     const movieTitle = movie.title;
     const releaseDate = movie.release_date;
-    const rating = movie.vote_average;
+    const movieRating = movie.vote_average;
     const movieId = movie.id;
 
     const movieCardHTML = `
@@ -38,13 +38,37 @@ async function generateMovieCardHTML(movie) {
             <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
             <div class="movie-title">${movieTitle}</div>
             <p class="movie-info">
-                <span class="director">${rating}<br /></span> 
-                <span class="release-date">${releaseDate}</span>
+                <span class="director">Rating: ${movieRating} / 10<br /></span> 
+                <span class="release-date">Release Date: ${formatDateToEnglish(releaseDate)}</span>
             </p>
         </button>
     `;
 
     return movieCardHTML;    
+}
+
+function formatDateToEnglish(inputDate) {
+    const months = [
+      'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ];
+  
+    const dateParts = inputDate.split('-');
+    const year = dateParts[0];
+    const month = months[parseInt(dateParts[1], 10) - 1];
+    const day = parseInt(dateParts[2], 10);
+  
+    let daySuffix = 'th';
+    if (day === 1 || day === 21 || day === 31) {
+      daySuffix = 'st';
+    } else if (day === 2 || day === 22) {
+      daySuffix = 'nd';
+    } else if (day === 3 || day === 23) {
+      daySuffix = 'rd';
+    }
+    const formattedDate = `${month} ${day}${daySuffix}, ${year}`;
+    return formattedDate;
 }
 
 async function displaySearchResults() {
