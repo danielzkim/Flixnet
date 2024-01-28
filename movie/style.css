@@ -7,7 +7,7 @@ body {
     align-items: center;
     justify-content: center;
     /* font to use */
-    font-family: "Jockey One-Regular", Helvetica;
+    font-family: "Jockey One", sans-serif;
     font-weight: 400;
     color: white; 
   }
@@ -78,7 +78,7 @@ body {
     position: absolute;
     top: 120px;
     left: 15px;
-    margin-top: 3vh;
+    margin-top: 2vh;
     margin-bottom: 3vh;
   }
 
@@ -93,7 +93,7 @@ body {
   .movie .movie-info {
     display: flex;
     flex-direction: column;
-    font-family: "Jockey One-Regular", Helvetica;
+    font-family: "Jockey One", sans-serif;
     font-weight: 400;
     color: white;
     text-align: left;
@@ -141,11 +141,13 @@ body {
     flex-direction: column;
     top: 735px;
     left: 30px;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
   }
 
   .related-movies .related {
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 4vh;
   }
 
   .related-movies .related-movie-cards {
@@ -165,11 +167,12 @@ body {
     border: 0;
     background: none;
     cursor: pointer;
-    font-family: "Jockey One-Regular", Helvetica;
+    font-family: "Jockey One", sans-serif;
     font-weight: 400;
     color: white;
     text-align: left;
     width: 196px;
+    flex: 0 0 calc(16.666% - 24px);
   }
 
   .movie-card .movie-img {

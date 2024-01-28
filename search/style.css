@@ -7,7 +7,7 @@ body {
     align-items: center;
     justify-content: center;
     /* font to use */
-    font-family: "Jockey One-Regular", Helvetica;
+    font-family: "Jockey One", sans-serif;
     font-weight: 400;
     color: white; 
   }
@@ -91,11 +91,13 @@ body {
     border: 0;
     background: none;
     cursor: pointer;
-    font-family: "Jockey One-Regular", Helvetica;
+    font-family: "Jockey One", sans-serif;
     font-weight: 400;
     color: white;
     text-align: left;
     width: 196px;
+    flex: 0 0 calc(16.666% - 24px);
+
   }
 
   .movie-card .movie-img {

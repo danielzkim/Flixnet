@@ -74,7 +74,7 @@ async function generateSimilarMovieCardHTML(movie) {
                 <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
                 <div class="movie-title">${movieTitle}</div>
                 <p class="movie-info">
-                    <span class="director">Rating: ${movieRating} / 10</span><br />
+                    <span class="director">Rating: ${Math.round(movieRating * 10) / 10} / 10</span><br />
                     <span class="release-date">Release Date: ${formatDateToEnglish(releaseDate)}</span>
                 </p>
             </button>
@@ -112,12 +112,12 @@ async function generateSelectedMovie(movieId) {
 
         // Generate HTML
         const selectedMovieHTML = `
-        <button class="movie" data-movie-id="${movie.id}">
+        <div class="movie" data-movie-id="${movie.id}">
             <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
             <div class="movie-info">
                 <div id="movie-title">${movieTitle}</div>
                 <p>
-                    <span class="director">Rating: ${movieRating} / 10<br /></span>
+                    <span class="director">Rating: ${Math.round(movieRating * 10) / 10} / 10<br /></span>
                    <span class="release-date">Release Date: ${formatDateToEnglish(releaseDate)}</span>
                 </p>
                 <div id="description">Description:</div>
@@ -129,7 +129,7 @@ async function generateSelectedMovie(movieId) {
                     ${movieCast}
                 </p>
             </div>
-        </button>
+        </div>
         `;
         return selectedMovieHTML;
 }

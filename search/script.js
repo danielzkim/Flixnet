@@ -38,7 +38,7 @@ async function generateMovieCardHTML(movie) {
             <img class="movie-img" src="https://image.tmdb.org/t/p/w500${moviePosterUrl}">
             <div class="movie-title">${movieTitle}</div>
             <p class="movie-info">
-                <span class="director">Rating: ${movieRating} / 10<br /></span> 
+                <span class="director">Rating: ${Math.round(movieRating * 10) / 10} / 10<br /></span> 
                 <span class="release-date">Release Date: ${formatDateToEnglish(releaseDate)}</span>
             </p>
         </button>
